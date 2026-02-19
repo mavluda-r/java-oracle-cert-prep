@@ -36,7 +36,12 @@ class StudentInfo1 {
             + st.course + " avgGrade: " + st.avgGrade);
   }
 
-  void testStudent(ArrayList <Student1> ast) {
+  void testStudent(ArrayList <Student1> aL, StudentChecks studentChecks) {
+    for (Student1 st : aL) {
+      if(studentChecks.test(st)){
+        printStudent(st);
+      }
+    }
 
   }
   public static void main(String[] args) {
@@ -52,18 +57,72 @@ class StudentInfo1 {
     list.add(st4);
     list.add(st5);
     StudentInfo1 si = new StudentInfo1();
+    FindStudentOverGrade findStudentOverGrade = new FindStudentOverGrade();
+    FindStudentUnderGrade findStudentUnderGrade = new FindStudentUnderGrade();
+    FindStudentOverAge findStudentOverAge = new FindStudentOverAge();
+    FindStudentUnderAge findStudentUnderAge = new FindStudentUnderAge();
+    FindStudentBySex findStudentBySex = new FindStudentBySex();
+    FindStudentMixCondition findStudentMixCondition = new FindStudentMixCondition();
+
+    System.out.println("---------find student over grade--------");
+    si.testStudent(list, findStudentOverGrade);
+    System.out.println("---------find student under grade--------");
+    si.testStudent(list, findStudentUnderGrade);
+    System.out.println("---------find student over age--------");
+    si.testStudent(list, findStudentOverAge);
+    System.out.println("---------find student under age--------");
+    si.testStudent(list, findStudentUnderGrade);
+    System.out.println("---------find student by sex--------");
+    si.testStudent(list, findStudentBySex);
+    System.out.println("---------find student mix condition--------");
+    si.testStudent(list, findStudentMixCondition);
 
   }
 }
 
 interface StudentChecks {
 
-  boolean testStudent(Student1 s);
+  boolean test(Student1 s);
 }
 
 class FindStudentOverGrade implements StudentChecks {
 
-  public boolean testStudent(Student1 s) {
+  public boolean test(Student1 s) {
     return s.avgGrade > 8.4;
+  }
+}
+
+class FindStudentUnderGrade implements StudentChecks {
+
+  public boolean test(Student1 s) {
+    return s.avgGrade < 9;
+  }
+}
+
+class FindStudentOverAge implements StudentChecks {
+
+  public boolean test(Student1 s) {
+    return s.age > 25;
+  }
+}
+
+class FindStudentUnderAge implements StudentChecks {
+
+  public boolean test(Student1 s) {
+    return s.age < 25;
+  }
+}
+
+class FindStudentBySex implements StudentChecks {
+
+  public boolean test(Student1 s) {
+    return s.sex == 'm';
+  }
+}
+
+class FindStudentMixCondition implements StudentChecks {
+
+  public boolean test(Student1 s) {
+    return (s.avgGrade > 7.1 && s.age < 23 && s.sex == 'm');
   }
 }
