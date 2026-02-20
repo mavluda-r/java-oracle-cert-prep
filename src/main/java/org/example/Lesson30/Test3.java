@@ -59,17 +59,17 @@ class StudentInfo3 {
     list.add(st5);
     StudentInfo3 si = new StudentInfo3();
 
-    // bu usul ishlashi uchun interface faqat bittagina method ga ega bo`lishi kerak
+    // bu usul ishlashi uchun Interface ichida faqat
+    // bitta abstract method bo‘lishi kerak — shunda u lambda bilan ishlaydi
     System.out.println("---------find student over grade--------");
     si.testStudents3(list, (Student3 st) -> {
       return st.avgGrade > 0.5;
     });
     System.out.println("---------find student under grade--------");
-    si.testStudents3(list, (Student3 st) -> {
-      return st.avgGrade <= 0.5;
-    });
+    si.testStudents3(list, st -> st.avgGrade <= 0.5);
     System.out.println("---------find student over age--------");
-    si.testStudents3(list, (Student3 st) ->{
+    si.testStudents3(list, st -> {
+      int z = 5;
       return st.age > 25;
     });
     System.out.println("---------find student under age--------");
@@ -88,7 +88,39 @@ class StudentInfo3 {
   }
 }
 
+// Functional Interface
 interface StudentChecks3 {
 
   boolean test3(Student3 s);
 }
+
+
+
+/*
+*
+Functional interface’da:
+
+✔ 1 ta abstract method bo‘lishi shart
+✔ lekin boshqa methodlar bo‘lishi mumkin:
+
+default methodlar
+
+static methodlar
+
+Object dan kelgan methodlar (toString, equals va h.k.)
+
+Masalan bu ham ishlaydi:
+
+@FunctionalInterface
+interface StudentChecks3 {
+
+  boolean test3(Student3 s);
+
+  default void hello() {
+    System.out.println("Hi");
+  }
+
+  static void test() {}
+}
+
+Baribir lambda ishlaydi.*/
