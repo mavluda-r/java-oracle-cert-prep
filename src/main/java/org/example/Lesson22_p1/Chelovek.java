@@ -1,4 +1,4 @@
-package org.example.Lesson22;
+package org.example.Lesson22_p1;
 
 public class Chelovek {
 

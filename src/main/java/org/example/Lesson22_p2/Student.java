@@ -1,6 +1,6 @@
-package org.example.Lesson22_p1;
+package org.example.Lesson22_p2;
 
-import org.example.Lesson22.Human;
+import org.example.Lesson22_p1.Human;
 
 public class Student extends Human {
 
