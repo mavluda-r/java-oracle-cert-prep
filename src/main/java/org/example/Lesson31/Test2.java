@@ -5,6 +5,17 @@ import java.util.ArrayList;
 public class Test2 {
 
   public static void main(String[] args) {
+    ArrayList<Integer> a11 = new ArrayList<>();
+    ArrayList a12 = new ArrayList();
+    int i = a11.get(0);
+    int i1 = (Integer)a12.get(0);
+
+
+
+
+
+
+
 
 
     ArrayList<Integer> a1 = new ArrayList<>();
